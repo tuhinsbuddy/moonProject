@@ -43,6 +43,14 @@ class HomepageViewController: UIViewController {
         })
     }
     
+//    fileprivate func removeDataOnCellDeletion(deleteFrom indexValue: Int){
+//        subjectTableViewData.remove(at: indexValue)
+//        if subjectTableViewData.isEmpty{
+//            subjectTableViewData = [["noDataFoundError": true]]
+//        }
+//    }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier{
         case _ where segue.identifier == "gotoAddMoreSubjectFromHome":

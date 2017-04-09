@@ -31,11 +31,7 @@ class AddMoreSubjectsViewController: UIViewController {
     
     fileprivate lazy var imagePickerForSubject = UIImagePickerController()
     fileprivate lazy var layoutManagedProperly: Bool = false
-
-    fileprivate lazy var subjectTitleName: String = ""
-    fileprivate lazy var subjectDescription: String = ""
     fileprivate lazy var imageObjectToShow: UIImage = UIImage()
-    fileprivate lazy var subjectDataToSave: [String: Any] = [:]
     
     weak var subjectDataSaveDelegate: NewSubjectDataSaveDelegate?
 
@@ -46,7 +42,11 @@ class AddMoreSubjectsViewController: UIViewController {
         imagePickerForSubject.delegate = self
         addNewSubjectTitleTxtField.delegate = self
         addNewSubjectDescriptionTxtField.delegate = self
-        addNewSubjectSelectNewImageViewSuperView.backgroundColor = UIColor.green.withAlphaComponent(0.6)
+        addNewSubjectSelectNewImageViewSuperView.backgroundColor = UIColor.clear
+        addNewSubjectBottomSaveBtnSuperView.backgroundColor = UIColor.green
+        addNewSubjectSelectNewImageView.contentMode = .scaleToFill
+        addNewSubjectSelectNewImageView.image = nil
+
         // Do any additional setup after loading the view.
     }
 
@@ -59,6 +59,8 @@ class AddMoreSubjectsViewController: UIViewController {
         if layoutManagedProperly != true{
             layoutManagedProperly = true
             addNewSubjectSelectNewImageViewSuperView.layer.cornerRadius = 50
+            addNewSubjectSelectNewImageViewSuperView.layer.borderColor = UIColor.black.withAlphaComponent(0.5).cgColor
+            addNewSubjectSelectNewImageViewSuperView.layer.borderWidth = 1.0
             addNewSubjectSelectNewImageViewSuperView.clipsToBounds = true
         }
     }
@@ -74,14 +76,19 @@ class AddMoreSubjectsViewController: UIViewController {
     
     @IBAction func addNewSubjectBottomSaveBtnAction(_ sender: UIButton) {
     
-        if !subjectTitleName.isEmpty && !subjectDescription.isEmpty{
-            subjectDataToSave = ["subjectTitle": subjectTitleName, "subjectDescription": subjectDescription, "subjectImage": imageObjectToShow]
+        if let subjctTitleCheck = addNewSubjectTitleTxtField.text,
+            !subjctTitleCheck.isEmpty,
+            let subjctDescriptionCheck = addNewSubjectDescriptionTxtField.text,
+            !subjctDescriptionCheck.isEmpty{
+            let subjectDataToSave: [String: Any] = ["subjectTitle": subjctTitleCheck, "subjectDescription": subjctDescriptionCheck, "subjectImage": imageObjectToShow]
             subjectDataSaveDelegate?.sendDataBackHomePageViewController(dataToSave: subjectDataToSave, isReloadTable: true)
             backToPreviousViewController()
-        }else if subjectTitleName.isEmpty{
-            subjectAddErrorLbl.text = "Subject Title Can not be empty"
-        }else if subjectDescription.isEmpty{
-            subjectAddErrorLbl.text = "Subject Description Can not be empty"
+        }else if let subjctTitleCheck = addNewSubjectTitleTxtField.text,
+            subjctTitleCheck.isEmpty{
+            subjectAddErrorLbl.text = "Subject Title Can not be empty. Subject image is optional!"
+        }else if let subjctDescriptionCheck = addNewSubjectDescriptionTxtField.text,
+            subjctDescriptionCheck.isEmpty{
+            subjectAddErrorLbl.text = "Subject Description Can not be empty. Subject image is optional!"
         }
     
     }
@@ -101,6 +108,32 @@ class AddMoreSubjectsViewController: UIViewController {
         backToPreviousViewController()
     }
     
+    
+    @IBAction func gotoCanvasViewControllerAction(_ sender: UIBarButtonItem) {
+        DispatchQueue.main.async (execute: {
+            self.performSegue(withIdentifier: "gotoCanvasViewControllerForDrawing", sender: sender)
+        })
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier{
+        case _ where segue.identifier == "gotoCanvasViewControllerForDrawing":
+            if let drawImageOnCanvasViewControllerObj = (segue.destination as? DrawingCanvasViewController){
+                drawImageOnCanvasViewControllerObj.getImageFromCanvasDelegate = self
+            }
+        default:
+            break
+        }
+    }
+    
+}
+
+extension AddMoreSubjectsViewController: ImageFromCanvasSaveDelegate{
+    func sendDataBackToAddSubjectViewController(drawnImage imageObject: UIImage) {
+        imageObjectToShow = imageObject
+        addNewSubjectSelectNewImageView.image = imageObjectToShow
+    }
 }
 
 
@@ -113,9 +146,8 @@ extension AddMoreSubjectsViewController: UIImagePickerControllerDelegate, UINavi
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let imageThatChoosed = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            addNewSubjectSelectNewImageView.contentMode = .scaleToFill
-            addNewSubjectSelectNewImageView.image = imageThatChoosed
             imageObjectToShow = imageThatChoosed
+            addNewSubjectSelectNewImageView.image = imageObjectToShow
             debugPrint("Image selected. Can perform some upload task from here in async. mode!")
         }
         dismiss(animated: true, completion: {Void in
@@ -130,64 +162,9 @@ extension AddMoreSubjectsViewController: UITextFieldDelegate{
         return false
     }
     
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        switch textField{
-//        case _ where textField == addNewSubjectTitleTxtField:
-//            if let enteredSubjectTitleCheck = textField.text,
-//                !enteredSubjectTitleCheck.isEmpty{
-//                subjectTitleName = enteredSubjectTitleCheck
-//                subjectAddErrorLbl.text = nil
-//            }else{
-//                debugPrint("Subject Title is empty!")
-//                subjectTitleName.removeAll()
-//            }
-//            
-//            
-//        case _ where textField == addNewSubjectDescriptionTxtField:
-//            if let enteredSubjectDescriptionCheck = textField.text,
-//                !enteredSubjectDescriptionCheck.isEmpty{
-//                subjectDescription = enteredSubjectDescriptionCheck
-//                subjectAddErrorLbl.text = nil
-//            }else{
-//                debugPrint("Subject Description is empty!")
-//                subjectDescription.removeAll()
-//            }
-//        default :
-//            break
-//            
-//        }
-//    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        switch textField{
-        case _ where textField == addNewSubjectTitleTxtField:
-            if let enteredSubjectTitleCheck = textField.text,
-                !enteredSubjectTitleCheck.isEmpty{
-                subjectTitleName = enteredSubjectTitleCheck
-                subjectAddErrorLbl.text = nil
-            }else{
-                debugPrint("Subject Title is empty!")
-                subjectTitleName.removeAll()
-            }
-            
-            
-        case _ where textField == addNewSubjectDescriptionTxtField:
-            if let enteredSubjectDescriptionCheck = textField.text,
-                !enteredSubjectDescriptionCheck.isEmpty{
-                subjectDescription = enteredSubjectDescriptionCheck
-                subjectAddErrorLbl.text = nil
-            }else{
-                debugPrint("Subject Description is empty!")
-                subjectDescription.removeAll()
-            }
-        default :
-            break
-            
-        }
-        
-        return true
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        subjectAddErrorLbl.text = nil
     }
-    
 }
 
 

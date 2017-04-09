@@ -145,6 +145,11 @@
                                                 <action selector="cancelTheSubjectAndBackToPreviousViewControllerAction:" destination="mgW-KV-7UR" id="PI3-Ik-4c7"/>
                                             </connections>
                                         </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Draw" id="cSj-hf-j47">
+                                            <connections>
+                                                <action selector="gotoCanvasViewControllerAction:" destination="mgW-KV-7UR" id="o0o-62-qml"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -272,12 +277,12 @@
                                     <constraint firstAttribute="bottom" secondItem="mmX-pQ-M6l" secondAttribute="bottom" id="pyf-vF-GB0"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title is empty" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LXg-JS-COo">
-                                <rect key="frame" x="0.0" y="346" width="375" height="50"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title is empty" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LXg-JS-COo">
+                                <rect key="frame" x="0.0" y="346" width="375" height="70"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="LMx-PF-1RU"/>
+                                    <constraint firstAttribute="height" constant="70" id="LMx-PF-1RU"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -320,11 +325,95 @@
                         <outlet property="addNewSubjectTitleTxtField" destination="Ti2-3a-FT5" id="VFN-2F-zub"/>
                         <outlet property="addNewSubjectTitleTxtLbl" destination="HNv-Nk-NLo" id="hk8-xA-uyz"/>
                         <outlet property="subjectAddErrorLbl" destination="LXg-JS-COo" id="Rie-df-P84"/>
+                        <segue destination="Bre-tw-eov" kind="show" identifier="gotoCanvasViewControllerForDrawing" id="kwJ-bv-DqY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zNl-2v-bCJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1936.8" y="103.89805097451276"/>
+        </scene>
+        <!--Drawing Canvas View Controller-->
+        <scene sceneID="Lw1-He-v4q">
+            <objects>
+                <viewController id="Bre-tw-eov" customClass="DrawingCanvasViewController" customModule="noonAcademyProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="835-QL-CjK"/>
+                        <viewControllerLayoutGuide type="bottom" id="6go-0f-7Ai"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FQ5-uV-Rgf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gGS-id-VtH">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="IHo-dP-xRE"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Draw Image" id="CSW-WS-zNg">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Zot-gj-5et">
+                                            <connections>
+                                                <action selector="cancelAndbackToPreviousVieControllerAction:" destination="Bre-tw-eov" id="1FB-gm-hrL"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Clear" id="x5j-7U-4Ol">
+                                            <connections>
+                                                <action selector="clearTheCanvasAction:" destination="Bre-tw-eov" id="w0r-O9-dg3"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Y4-AD-eWR" customClass="DrawingInCanvasViewClass" customModule="noonAcademyProject" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="375" height="567"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6X9-ZY-QpC">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hnY-jQ-iZo">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                        <state key="normal" title="Save Image"/>
+                                        <connections>
+                                            <action selector="bottomSaveBtnAction:" destination="Bre-tw-eov" eventType="touchUpInside" id="KaY-aC-iJN"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="hnY-jQ-iZo" secondAttribute="bottom" id="3We-4g-Q5E"/>
+                                    <constraint firstItem="hnY-jQ-iZo" firstAttribute="centerX" secondItem="6X9-ZY-QpC" secondAttribute="centerX" id="7nJ-rx-aDL"/>
+                                    <constraint firstItem="hnY-jQ-iZo" firstAttribute="top" secondItem="6X9-ZY-QpC" secondAttribute="top" id="Cvu-Ey-7kX"/>
+                                    <constraint firstAttribute="trailing" secondItem="hnY-jQ-iZo" secondAttribute="trailing" id="GhJ-xy-oNG"/>
+                                    <constraint firstItem="hnY-jQ-iZo" firstAttribute="leading" secondItem="6X9-ZY-QpC" secondAttribute="leading" id="QKT-SW-dTg"/>
+                                    <constraint firstAttribute="height" constant="50" id="TXp-sq-wPY"/>
+                                    <constraint firstItem="hnY-jQ-iZo" firstAttribute="centerY" secondItem="6X9-ZY-QpC" secondAttribute="centerY" id="hkC-im-AHh"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6go-0f-7Ai" firstAttribute="top" secondItem="6X9-ZY-QpC" secondAttribute="bottom" id="3sQ-2b-zf1"/>
+                            <constraint firstItem="9Y4-AD-eWR" firstAttribute="leading" secondItem="FQ5-uV-Rgf" secondAttribute="leading" id="Ht1-r0-IR8"/>
+                            <constraint firstItem="6X9-ZY-QpC" firstAttribute="leading" secondItem="FQ5-uV-Rgf" secondAttribute="leading" id="Rp2-F8-mTh"/>
+                            <constraint firstItem="gGS-id-VtH" firstAttribute="leading" secondItem="FQ5-uV-Rgf" secondAttribute="leading" id="SK1-gw-DPp"/>
+                            <constraint firstAttribute="trailing" secondItem="gGS-id-VtH" secondAttribute="trailing" id="Sxn-KV-R85"/>
+                            <constraint firstItem="6X9-ZY-QpC" firstAttribute="top" secondItem="9Y4-AD-eWR" secondAttribute="bottom" id="agA-ky-aMX"/>
+                            <constraint firstItem="gGS-id-VtH" firstAttribute="top" secondItem="FQ5-uV-Rgf" secondAttribute="top" id="f8X-Xt-WWx"/>
+                            <constraint firstAttribute="trailing" secondItem="6X9-ZY-QpC" secondAttribute="trailing" id="ia9-5b-nEe"/>
+                            <constraint firstAttribute="trailing" secondItem="9Y4-AD-eWR" secondAttribute="trailing" id="r1E-7m-1FI"/>
+                            <constraint firstItem="9Y4-AD-eWR" firstAttribute="top" secondItem="gGS-id-VtH" secondAttribute="bottom" id="sHW-g7-zMk"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bottomSaveBtn" destination="hnY-jQ-iZo" id="bXw-dC-1Ny"/>
+                        <outlet property="bottomSaveBtnSuperView" destination="6X9-ZY-QpC" id="f7Z-42-HDm"/>
+                        <outlet property="mainCanvasView" destination="9Y4-AD-eWR" id="J69-ST-m68"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wLS-ga-POX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2693.5999999999999" y="91.304347826086968"/>
         </scene>
     </scenes>
 </document>

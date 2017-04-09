@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		084108041E9A26900070DC50 /* AddMoreSubjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084108031E9A26900070DC50 /* AddMoreSubjectsViewController.swift */; };
+		084108081E9AA1700070DC50 /* DrawingCanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084108071E9AA1700070DC50 /* DrawingCanvasViewController.swift */; };
+		0841080A1E9AAB5E0070DC50 /* DrawingInCanvasViewClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084108091E9AAB5E0070DC50 /* DrawingInCanvasViewClass.swift */; };
 		08DB214A1E93D198007F84D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DB21491E93D198007F84D8 /* AppDelegate.swift */; };
 		08DB214C1E93D198007F84D8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DB214B1E93D198007F84D8 /* LoginViewController.swift */; };
 		08DB214F1E93D198007F84D8 /* NoonAcademy.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08DB214D1E93D198007F84D8 /* NoonAcademy.storyboard */; };
@@ -24,6 +26,8 @@
 
 /* Begin PBXFileReference section */
 		084108031E9A26900070DC50 /* AddMoreSubjectsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMoreSubjectsViewController.swift; sourceTree = "<group>"; };
+		084108071E9AA1700070DC50 /* DrawingCanvasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingCanvasViewController.swift; sourceTree = "<group>"; };
+		084108091E9AAB5E0070DC50 /* DrawingInCanvasViewClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingInCanvasViewClass.swift; sourceTree = "<group>"; };
 		08DB21461E93D198007F84D8 /* noonAcademyProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = noonAcademyProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08DB21491E93D198007F84D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08DB214B1E93D198007F84D8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -80,8 +84,10 @@
 				08DB214B1E93D198007F84D8 /* LoginViewController.swift */,
 				08DB21661E93EC8C007F84D8 /* HomepageViewController.swift */,
 				084108031E9A26900070DC50 /* AddMoreSubjectsViewController.swift */,
+				084108071E9AA1700070DC50 /* DrawingCanvasViewController.swift */,
 				08DB21681E95730F007F84D8 /* CommonTableCell.xib */,
 				08DB216A1E957361007F84D8 /* CommonTableCell.swift */,
+				084108091E9AAB5E0070DC50 /* DrawingInCanvasViewClass.swift */,
 				08DB214D1E93D198007F84D8 /* NoonAcademy.storyboard */,
 				08DB21531E93D198007F84D8 /* Assets.xcassets */,
 				08DB21551E93D198007F84D8 /* LaunchScreen.storyboard */,
@@ -234,6 +240,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0841080A1E9AAB5E0070DC50 /* DrawingInCanvasViewClass.swift in Sources */,
+				084108081E9AA1700070DC50 /* DrawingCanvasViewController.swift in Sources */,
 				08DB21651E93EA37007F84D8 /* ClassForFunctions.swift in Sources */,
 				08DB21671E93EC8C007F84D8 /* HomepageViewController.swift in Sources */,
 				08DB214C1E93D198007F84D8 /* LoginViewController.swift in Sources */,
