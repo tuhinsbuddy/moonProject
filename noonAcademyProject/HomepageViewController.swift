@@ -21,10 +21,10 @@ class HomepageViewController: UIViewController {
         subjectDetailsMainTableView.register(UINib(nibName: "CommonTableCell", bundle: nil), forCellReuseIdentifier: "CellForAllTableView")
         subjectDetailsMainTableView.delegate = self
         subjectDetailsMainTableView.dataSource = self
-        
+        subjectDetailsMainTableView.tableFooterView = UIView(frame: CGRect.zero)
         subjectTableViewData.removeAll()
         for _ in 0...9{
-            let dataForTableView: [String: Any] = ["subjectTitle": "English", "subjectDescription": "English Language", "subjectImage": "urlString"]
+            let dataForTableView: [String: Any] = ["subjectTitle": "English", "subjectDescription": "English Language", "subjectImage": UIImage()]
             subjectTableViewData.append(dataForTableView)
         }
         
@@ -43,7 +43,16 @@ class HomepageViewController: UIViewController {
         })
     }
     
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier{
+        case _ where segue.identifier == "gotoAddMoreSubjectFromHome":
+            if let addMoreSubjectViewControllerObj = (segue.destination as? AddMoreSubjectsViewController){
+                addMoreSubjectViewControllerObj.subjectDataSaveDelegate = self
+            }
+        default:
+            break
+        }
+    }
 
 }
 
@@ -130,17 +139,20 @@ extension HomepageViewController: UITableViewDataSource{
                 }
                 
                 
-                if let subjectImageUrlCheck = subjectTableViewData[indexPath.row]["subjectImage"] as? String,
-                    !subjectImageUrlCheck.isEmpty{
+                if let subjectImageCheck = subjectTableViewData[indexPath.row]["subjectImage"] as? UIImage{
                         debugPrint("Image url found for this cell. Cen perform some lazy loading task on asynchronus process to load images. Which gives a dramatic speed of performance improvement!")
+                        cell.imageForTheCell.image = subjectImageCheck
                     }else{
-                    debugPrint("Image Url not found for this cell. Can load some placeholder image for this cell.")
+                        cell.imageForTheCell.image = nil
+                        debugPrint("Image Url not found for this cell. Can load some placeholder image for this cell.")
                 }
-                
                 
                 cell.selectionStyle = .none
                 return cell
             }else{
+                
+                
+                
                 return UITableViewCell()
             }
     }
@@ -163,3 +175,13 @@ extension HomepageViewController: UITableViewDataSource{
     
 }
 
+extension HomepageViewController: NewSubjectDataSaveDelegate{
+    func sendDataBackHomePageViewController(dataToSave dataObject: [String : Any], isReloadTable reloadTableView: Bool) {
+        if !dataObject.isEmpty{
+            subjectTableViewData.insert(dataObject, at: 0)
+            if reloadTableView == true{
+                subjectDetailsMainTableView.reloadData()
+            }
+        }
+    }
+}
