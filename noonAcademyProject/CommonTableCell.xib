@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina3_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+            <string>HelveticaNeue-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellForAllTableView" rowHeight="129" id="KGk-i7-Jjw" customClass="CommonTableCell" customModule="noonAcademyProject" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="388" height="129"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="388" height="128.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sYb-Hv-cwy">
+                        <rect key="frame" x="8" y="36" width="50" height="57"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="lessThanOrEqual" priority="999" constant="50" id="Slp-Mu-mZo"/>
+                            <constraint firstAttribute="width" constant="50" id="bag-wt-RvO"/>
+                        </constraints>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="meU-6G-WIq">
+                        <rect key="frame" x="66" y="0.0" width="322" height="128.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" placeholderIntrinsicWidth="172" placeholderIntrinsicHeight="21" text="Title of the Subject" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QAT-Ep-vx4">
+                                <rect key="frame" x="0.0" y="0.0" width="322" height="64.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
+                                <color key="textColor" red="0.48627450980392156" green="0.48627450980392156" blue="0.48627450980392156" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="751" verticalHuggingPriority="751" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" placeholderIntrinsicWidth="172" placeholderIntrinsicHeight="21" text="Subject Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RBa-SA-0GB">
+                                <rect key="frame" x="0.0" y="64.5" width="322" height="64"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <color key="textColor" red="0.48627450979999998" green="0.48627450979999998" blue="0.48627450979999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="sYb-Hv-cwy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="O1B-RC-pv6"/>
+                    <constraint firstAttribute="trailing" secondItem="meU-6G-WIq" secondAttribute="trailing" id="Usk-ft-Y2B"/>
+                    <constraint firstItem="meU-6G-WIq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="XHN-JZ-lPe"/>
+                    <constraint firstItem="sYb-Hv-cwy" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="kSV-BX-3cE"/>
+                    <constraint firstAttribute="bottom" secondItem="meU-6G-WIq" secondAttribute="bottom" id="oSG-mJ-wFr"/>
+                    <constraint firstItem="meU-6G-WIq" firstAttribute="leading" secondItem="sYb-Hv-cwy" secondAttribute="trailing" constant="8" id="rfg-PZ-qqN"/>
+                    <constraint firstItem="sYb-Hv-cwy" firstAttribute="top" relation="lessThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="top" constant="36" id="v9a-9U-mdM"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="imageForTheCell" destination="sYb-Hv-cwy" id="Rsl-63-ccf"/>
+                <outlet property="subjectDescriptionLbl" destination="RBa-SA-0GB" id="zmy-oW-hpG"/>
+                <outlet property="subjectDetailsMainStackView" destination="meU-6G-WIq" id="mkr-Zw-EFM"/>
+                <outlet property="titleForTheCell" destination="QAT-Ep-vx4" id="Ceb-im-8n9"/>
+            </connections>
+            <point key="canvasLocation" x="294" y="264.5"/>
+        </tableViewCell>
+    </objects>
+</document>
